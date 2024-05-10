@@ -37,5 +37,5 @@ bind-address=0.0.0.0\n\
 [mariadb]\n\
 [mariadb-10.5]" > /etc/my.cnf.d/mariadb-server.cnf
 
-echo "MariaDB has started !"
+echo "MariaDB has started!"
 exec mysqld_safe

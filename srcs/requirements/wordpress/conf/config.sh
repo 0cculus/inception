@@ -1,7 +1,7 @@
 #!/bin/sh
 
 while ! mariadb -hmariadb -u$DATABASE_ADMIN -p$DATABASE_ADMIN_PW $DATABASE_NAME; do
-    echo "[-] Waiting on MariaDB to start..."
+    echo "Waiting on MariaDB daemon..."
     sleep 3
 done
 
@@ -28,5 +28,5 @@ fi
 
 mkdir /run/php && chown www-data:www-data /run/php
 
-echo "[+] Wordpress & PHP_FPM is Running !"
+echo "Wordpress has started!"
 exec /usr/sbin/php-fpm7.4 --nodaemonize
