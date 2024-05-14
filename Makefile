@@ -1,18 +1,18 @@
 SHELL=/bin/bash
 COMPOSE_FILE="./srcs/docker-compose.yml"
-WP_VOLUME_PATH="/home/${USER}/data/wp"
-DB_VOLUME_PATH="/home/${USER}/data/db"
+DATA_PATH="/home/brheaume/data/"
 
 
-all:
-	@docker-compose -f $(COMPOSE_FILE) build
-	@docker-compose -f $(COMPOSE_FILE) up -d
+all: data build start
+
+data:
+	./data.sh
 
 build:
 	@docker-compose -f $(COMPOSE_FILE) build
 
 start:
-	@docker-compose -f $(COMPOSE_FILE) up -d
+	@docker-compose -f $(COMPOSE_FILE) up
 
 stop:
 	@docker-compose -f $(COMPOSE_FILE) down
@@ -35,7 +35,6 @@ wordpress:
 fclean:
 	@docker-compose -f $(COMPOSE_FILE) down -v --rmi all --remove-orphans --timeout 0 || true
 	@docker system prune -af || true
-	@rm -rf $(WP_VOLUME_PATH)/* 
-	@rm -rf $(DB_VOLUME_PATH)/*
+	@rm -rf $(DATA_PATH) 
 
 reset: fclean run
