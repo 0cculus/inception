@@ -19,6 +19,7 @@ wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &
 
 cd /var/www/html
 
+if [[ ! -f /var/www/html/wp-config.php ]]; then
 wp core download --allow-root --path=/var/www/html
 wp config create --dbname="${DATABASE_NAME}" --dbuser="${DATABASE_USER}" --dbpass="${DATABASE_USER_PW}" --dbhost=mariadb:3306 --dbcharset="utf8" --allow-root
 wp core install --url="brheaume.42.fr" --title="${WP_TITLE}" --admin_user="${WP_ADMIN_USR}" --admin_password="${WP_ADMIN_PWD}" --admin_email="${WP_ADMIN_EMAIL}" --skip-email --allow-root
